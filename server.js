@@ -10,7 +10,11 @@ const { exec } = require('child_process'); // Import exec to run shell commands
 const app = express();
 const upload = multer({ dest: 'uploads/' });
 
-app.use(cors()); // Enable CORS for all routes
+app.use(cors({
+    origin: 'http://localhost:3000', // Allow requests from this origin
+    methods: ['GET', 'POST'],       // Specify allowed HTTP methods
+    credentials: true,              // Allow cookies if needed
+}));
 app.use(express.json());
 
 // Serve static files from the 'uploads' folder
